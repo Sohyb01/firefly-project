@@ -25,3 +25,58 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+* {
+  line-height: 170%;
+}
+
+
+/* Project Styling */
+.navbar{
+  width: calc(100% - 32px);
+  margin-left: 16px;
+}
+@media screen and (min-width: 480px) {
+  .navbar{
+  width: calc(100% - 48px);
+    margin-left: 24px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navbar{
+  width: calc(100% - 64px);
+    margin-left: 32px;
+  }
+}
+@media screen and (min-width: 1080px) {
+  .navbar{
+  width: calc(100% - 80px);
+    margin-left: 40px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .navbar{
+  width: calc(100% - 96px);
+    margin-left: 48px;
+  }
+}
+
+.lake-image{
+  background: url(../../public/lake.jpg);
+  @apply  h-[321px] bg-cover bg-center
+}
+.green-bg{
+  background-image: url(../../public/Greenbg.png);
+  @apply bg-cover
+}
+
+/* Reusable stuff */
+.leaf-stat{
+  @apply flex flex-col items-start text-start bg-green-50 text-green-800 p-2 green-effect rounded-leaf
+}
+.green-effect{
+  box-shadow: 2px 2px #16A34A
+}
+.rounded-leaf{
+    border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
