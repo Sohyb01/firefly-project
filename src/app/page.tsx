@@ -2,47 +2,64 @@ export default function Home() {
   return (
     <main className="container-all">
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section flex flex-col lg:flex-row">
         {/* Hero section image */}
         <div className="lake-image"></div>
         {/* Hero section content */}
-        <div className="green-bg px-4 py-10 gap-8 flex flex-col items-center">
+        <div className="green-bg px-4 py-10 gap-8 flex flex-col items-center hero-section-content z-10 lg:h-[720px] lg:w-[50%] lg:py-10 lg:pl-10 lg:pr-2 lg:pt-[120px] lg:gap-16 lg:flex lg:items-start xl:h-[968px] xl:py-[120px] xl:pt-[160px] xl:justify-between">
           {/* h1, paragraph, and sign up buttons */}
-          <div className="gap-4 flex flex-col">
+          <div className="hero-div-1 gap-4 flex flex-col">
+            {/* h1 and paragraph */}
             <div className="gap-2 flex flex-col">
-              <h1 className="text-green-50 text-left text-2xl">
-                Enter the Wild, Create Unforgettable Memories
+              <h1 className="text-green-50 text-left text-2xl xl:text-4xl">
+                Enter the Wild, <br className="hidden sm:block" /> Create
+                Unforgettable Memories
               </h1>
-              <p className="text-neutral-200 text-md">
+              <p className="text-neutral-200 text-md xl:text-lg">
                 We specialize in organizing and launching trips to give you
                 memorable experiences — Explore breathtaking views, see unique
                 wildlife, visit special locations and trails, and take part in
                 fun activities. What are you waiting for?
               </p>
             </div>
+            {/* Sign up buttons */}
+            <div className="gap-4 flex justify-center items-center flex-wrap w-fit mx-auto md:mx-0 lg:gap-8">
+              <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center px-8 py-2">
+                Sign Up Today
+              </button>
+              <button className="rounded-leaf-2 bg-green-50 text-green-800 text-center px-8 py-2">
+                Learn More
+              </button>
+            </div>
           </div>
           {/* Leaf stat container */}
-          <div className="gap-4 flex flex-wrap justify-center">
-            <div className="leaf-stat">
-              <h2 className="text-sm">Trips</h2>
-              <h1 className="text-2xl font-bold -my-[14px]">320+</h1>
-              <h3 className="text-xs">in 2023</h3>
+          <div className="hero-div-2 gap-4 flex flex-wrap justify-center md:justify-start md:flex-col lg:gap-8 lg:flex-row">
+            <div className="leaf-stat w-fit">
+              <h2 className="text-sm xl:text-md">Trips</h2>
+              <h1 className="text-2xl xl:text-3xl font-bold xl:font-black -my-[14px]">
+                320+
+              </h1>
+              <h3 className="text-xs xl:text-sm">in 2023</h3>
             </div>
-            <div className="leaf-stat">
-              <h2 className="text-sm">Happy Clients</h2>
-              <h1 className="text-2xl font-bold -my-[14px]">2,140+</h1>
-              <h3 className="text-xs">Using our service</h3>
+            <div className="leaf-stat w-fit">
+              <h2 className="text-sm xl:text-md">Happy Clients</h2>
+              <h1 className="text-2xl xl:text-3xl font-bold xl:font-black -my-[14px]">
+                2,140+
+              </h1>
+              <h3 className="text-xs xl:text-sm">Using our service</h3>
             </div>
-            <div className="leaf-stat">
-              <h2 className="text-sm">Our Rating</h2>
-              <h1 className="text-2xl font-bold -my-[14px]">4.8 / 5</h1>
-              <h3 className="text-xs">Across different platforms</h3>
+            <div className="leaf-stat w-fit">
+              <h2 className="text-sm xl:text-md">Our Rating</h2>
+              <h1 className="text-2xl  xl:text-3xl font-bold xl:font-black -my-[14px]">
+                4.8 / 5
+              </h1>
+              <h3 className="text-xs xl:text-sm">Across different platforms</h3>
             </div>
           </div>
           {/* Newsletter and Socials container */}
-          <div className="gap-4 flex flex-col">
+          <div className="hero-div-3 gap-4 flex flex-col md:flex-row md:justify-center md:gap-16 lg:gap-4 w-full">
             {/* Newsletter input and label */}
-            <div className="flex flex-col text-center gap-2">
+            <div className="flex flex-col text-center gap-2 lg:w-full">
               <p className="text-green-50 text-md">Sign up to our Newsletter</p>
               <input
                 type="text"
@@ -51,7 +68,7 @@ export default function Home() {
               />
             </div>
             {/* Social media icons and label*/}
-            <div className="flex flex-col text-center gap-2">
+            <div className="flex flex-col text-center gap-2 lg:w-full">
               <p className="text-green-50 text-md">Follow us on social media</p>
               {/* Social Icons */}
               <div className="flex gap-8 items-center justify-center">

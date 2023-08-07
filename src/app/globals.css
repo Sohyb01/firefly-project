@@ -62,7 +62,7 @@ body {
 
 .lake-image{
   background: url(../../public/lake.jpg);
-  @apply  h-[321px] bg-cover bg-center
+  @apply  h-[321px] bg-cover bg-center md:h-[440px] lg:absolute lg:h-[720px] lg:w-full xl:h-[968px]
 }
 .green-bg{
   background-image: url(../../public/Greenbg.png);
@@ -79,4 +79,26 @@ body {
 .rounded-leaf{
     border-top-left-radius: 16px;
   border-bottom-right-radius: 16px;
+}
+.rounded-leaf-2{
+  border-top-left-radius: 40px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 10px;
+}
+
+.hero-section-content{
+  @apply md:grid md:grid-cols-8 md:gap-4 md:grid-flow-row
+}
+
+@media screen and (min-width: 768px) {
+  .hero-div-1{
+    grid-column: 1/7;
+  }
+  .hero-div-2{
+    grid-column: 7/9;
+  }
+  .hero-div-3{
+    grid-column: 1/9;
+  }
 }

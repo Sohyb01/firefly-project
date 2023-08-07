@@ -6,7 +6,7 @@ import { Nunito } from "next/font/google";
 // Wrap this around the return if you wish to use Session data in client components
 
 const nunito = Nunito({
-  weight: ["400", "700"],
+  weight: ["400", "700", "900"],
   subsets: ["latin"],
   display: "swap",
 });
