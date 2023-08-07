@@ -50,8 +50,22 @@ const Navbar = () => {
         </a>
       </div>
       {/* Button */}
-      <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center px-8 py-2">
+      <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center px-8 py-2 hidden md:block">
         Book a Trip
+      </button>
+      {/* Menu Button */}
+      <button className="md:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="19"
+          height="12"
+          viewBox="0 0 19 12"
+          className="fill-green-950"
+        >
+          <path d="M1.5 1H17.5" stroke="green" strokeWidth="1.5" />
+          <path d="M1.5 6H17.5" stroke="green" strokeWidth="1.5" />
+          <path d="M1.5 11H17.5" stroke="green" strokeWidth="1.5" />
+        </svg>
       </button>
     </nav>
   );

@@ -6,7 +6,7 @@ export default function Home() {
         {/* Hero section image */}
         <div className="lake-image"></div>
         {/* Hero section content */}
-        <div className="green-bg px-4 py-10 gap-8 flex flex-col items-center hero-section-content z-10 lg:h-[720px] lg:w-[50%] lg:py-10 lg:pl-10 lg:pr-2 lg:pt-[120px] lg:gap-16 lg:flex lg:items-start xl:h-[968px] xl:py-[120px] xl:pt-[160px] xl:justify-between">
+        <div className="green-bg px-4 sm:px-6 md:px-8  py-10 gap-4 flex flex-col items-center hero-section-content z-10 lg:h-[720px] lg:w-[50%] lg:py-10 lg:pl-10 lg:pr-2 lg:pt-[120px] lg:gap-16 lg:flex lg:items-start xl:h-[968px] xl:py-[120px] xl:px-12 xl:pt-[160px] xl:justify-between">
           {/* h1, paragraph, and sign up buttons */}
           <div className="hero-div-1 gap-4 flex flex-col">
             {/* h1 and paragraph */}
@@ -129,6 +129,94 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ABOUT US SECTION */}
+      <section className="section__styles flex flex-col gap-4 about-us__section xl:gap-y-16 xl:gap-x-8">
+        {/* h1 and p */}
+        <div className="about-us-div-1 flex flex-col items-center lg:items-start lg:justify-center lg:w-full gap-2 xl:gap-4">
+          <h1 className="text-2xl text-center lg:text-start text-green-950 font-bold xl:text-3xl">
+            — About Us —
+          </h1>
+          <p className="text-start xl:text-lg text-neutral-800">
+            At{" "}
+            <span className="font-black text-green-950">
+              <span className="text-orange-600">fire</span>fly
+            </span>{" "}
+            , we believe in the importance of creating cherished memories with
+            your loved ones. We organize, manage, and launch single and
+            multi-day trips to beautiful locations for groups of families and
+            friends.
+          </p>
+        </div>
+        {/* Image */}
+        <div className="about-us-div-2 tent-img lg:w-full"></div>
+        {/* Services h2 and leaves */}
+        <div className="about-us-div-3 flex flex-col gap-2">
+          <h2 className="text-green-950 font-bold text-lg text-start lg:text-center xl:text-start">
+            The two types of services we provide:
+          </h2>
+          {/* Leaves services */}
+          <div className="flex flex-col gap-4 md:flex-row justify-center xl:gap-8">
+            {/* Individual Leaf */}
+            <div className="flex flex-col items-center gap-8 px-4 py-8 bg-green-900 rounded-leaf-3 justify-between">
+              {/* Title and text */}
+              <p className="flex flex-col gap-4 items-center text-green-50">
+                <h3 className="text-xl">Camps — 2-4 Day Trips </h3>
+                <p className="text-lg">
+                  Multiple-day trips across multiple destinations, including:{" "}
+                  <ul>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Trip Guides
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Daily Breakfast, Lunch,
+                      Dinner, and Snacks
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Camping & Bonfires
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Fun Activities
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Multiple Photo Sessions
+                    </li>
+                  </ul>
+                </p>
+              </p>
+              <button className="rounded-leaf-4 w-fit bg-green-600 text-green-50 text-center px-8 py-2">
+                Book a trip
+              </button>
+            </div>
+            {/* Individual Leaf */}
+            <div className="flex flex-col items-center gap-8 px-4 py-8 bg-green-900 rounded-leaf-3 justify-between">
+              {/* Title and text */}
+              <p className="flex flex-col gap-4 items-center text-green-50">
+                <h3 className="text-xl">Hikes — 1 Day Trips </h3>
+                <p className="text-lg">
+                  Single-day trips to and from the destination, including:{" "}
+                  <ul>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Trip Guides
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Two Meals
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> Fun Activities
+                    </li>
+                    <li className="flex">
+                      <div className="mx-2">●</div> One Photo Session
+                    </li>
+                  </ul>
+                </p>
+              </p>
+              <button className="rounded-leaf-4 w-fit bg-green-600 text-green-50 text-center px-8 py-2">
+                Book a trip
+              </button>
             </div>
           </div>
         </div>
