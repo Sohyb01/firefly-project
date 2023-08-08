@@ -1,3 +1,5 @@
+import NewsletterComponent from "../components/NewsletterComponent";
+
 export default function Home() {
   return (
     <main className="container-all">
@@ -7,7 +9,7 @@ export default function Home() {
         <div className="lake-image"></div>
         {/* Hero section content */}
         <div className="green-bg  z-10 flex flex-col items-center lg:h-[720px] lg:w-[50%] xl:h-[968px]">
-          <div className="gap-4 flex flex-col items-center hero-section-content lg:gap-16 lg:flex lg:items-start xl:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 py-10  lg:py-10 lg:pl-10 lg:pr-10 xl:pr-12 lg:pt-[120px] xl:py-[120px] xl:px-12 xl:pt-[160px]">
+          <div className="gap-4 flex flex-col items-center hero-section-content lg:flex lg:items-start h-full lg:justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 py-10  lg:py-10 lg:pl-10 lg:pr-10 xl:pr-12 lg:pt-[120px] xl:py-[120px] xl:px-12 xl:pt-[160px]">
             {/* h1, paragraph, and sign up buttons */}
             <div className="hero-div-1 gap-4 flex flex-col">
               {/* h1 and paragraph */}
@@ -25,10 +27,10 @@ export default function Home() {
               </div>
               {/* Sign up buttons */}
               <div className="gap-4 flex justify-center items-center flex-wrap w-fit mx-auto md:mx-0 lg:gap-8">
-                <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center px-8 py-2">
+                <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center text-sm xl:text-md px-8 py-2">
                   Sign Up Today
                 </button>
-                <button className="rounded-leaf-2 bg-green-50 text-green-800 text-center px-8 py-2">
+                <button className="rounded-leaf-2 bg-green-50 text-green-800 text-center text-sm xl:text-md px-8 py-2">
                   Learn More
                 </button>
               </div>
@@ -60,27 +62,16 @@ export default function Home() {
               </div>
             </div>
             {/* Newsletter and Socials container */}
-            <div className="hero-div-3 gap-4 flex flex-col md:flex-row justify-center lg:justify-start md:gap-16 lg:gap-8 w-full">
+            <div className="hero-div-3 gap-4 flex flex-col md:flex-row justify-center md:justify-between md:gap-16 lg:gap-8 w-full">
               {/* Newsletter input and label */}
-              <div className="flex flex-col text-center gap-2 items-center lg:w-full md:max-w-[300px] ">
-                <p className="text-green-50 text-md">
-                  Sign up to our Newsletter
-                </p>
-                <input
-                  type="text"
-                  placeholder="Enter your Email"
-                  className="w-full green-effect rounded-leaf px-8 py-2 text-center text-sm bg-green-50 text-green-900 placeholder:text-green-900 placeholder:text-opacity-60 max-w-[238px] md:max-w-none"
-                />
-              </div>
+              <NewsletterComponent></NewsletterComponent>
               {/* Social media icons and label*/}
               <div className="flex flex-col text-center gap-2 md:w-fit ">
-                <p className="text-green-50 text-md">
-                  Follow us on social media
-                </p>
+                <p className="text-green-50 text-md">Follow us</p>
                 {/* Social Icons */}
-                <div className="flex gap-8 items-center justify-center">
+                <div className="flex gap-8 items-center justify-center h-full">
                   <a
-                    className=" fill-green-50 duration-200 hover:fill-orange-600"
+                    className=" fill-green-50 duration-200 hover:fill-green-500"
                     href=""
                     target="_blank"
                     id="tiktok"
@@ -94,7 +85,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    className=" fill-green-50 duration-200 hover:fill-orange-600"
+                    className=" fill-green-50 duration-200 hover:fill-green-500"
                     href=""
                     target="_blank"
                     id="linkedin"
@@ -108,7 +99,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    className=" fill-green-50 duration-200 hover:fill-orange-600"
+                    className=" fill-green-50 duration-200 hover:fill-green-500"
                     href=""
                     target="_blank"
                     id="instagram"
@@ -122,7 +113,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    className=" fill-green-50 duration-200 hover:fill-orange-600"
+                    className=" fill-green-50 duration-200 hover:fill-green-500"
                     href=""
                     target="_blank"
                     id="facebook"

@@ -1,8 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Navbar from "./components/Navbar";
 import { Nunito } from "next/font/google";
-import Footer from "./components/Footer";
 // import AuthProvider from "./context/AuthProvider";
 // Wrap this around the return if you wish to use Session data in client components
 
@@ -24,11 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} bg-white`}>
-        <Navbar></Navbar>
-        {children}
-        <Footer></Footer>
-      </body>
+      <body className={`${nunito.className} bg-white`}>{children}</body>
     </html>
   );
 }

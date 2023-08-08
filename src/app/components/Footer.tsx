@@ -178,7 +178,7 @@ const Footer = () => {
                 <div className="flex gap-8 items-center justify-center md:flex-col md:justify-between">
                   <a
                     className=" fill-green-50 duration-200 hover:fill-green-500"
-                    href=""
+                    href="https://www.facebook.com/profile.php?id=100003393718419"
                     target="_blank"
                     id="facebook"
                   >
@@ -192,7 +192,7 @@ const Footer = () => {
                   </a>
                   <a
                     className=" fill-green-50 duration-200 hover:fill-green-500"
-                    href=""
+                    href="https://www.instagram.com/sohyb_imm/"
                     target="_blank"
                     id="instagram"
                   >
@@ -206,7 +206,7 @@ const Footer = () => {
                   </a>
                   <a
                     className=" fill-green-50 duration-200 hover:fill-green-500"
-                    href=""
+                    href="#"
                     target="_blank"
                     id="tiktok"
                   >
@@ -220,7 +220,7 @@ const Footer = () => {
                   </a>
                   <a
                     className=" fill-green-50 duration-200 hover:fill-green-500"
-                    href=""
+                    href="https://www.linkedin.com/in/sohyb-mansour-b237961ba/"
                     target="_blank"
                     id="linkedin"
                   >
