@@ -57,7 +57,10 @@ const Footer = () => {
         </g>
       </svg>
       <div className="bg-green-800">
-        <section className="section__styles flex flex-col gap-8 sm:gap-16 ">
+        <section
+          className="section__styles flex flex-col gap-8 sm:gap-16"
+          id="footer"
+        >
           {/* h1, form, links, and socials */}
           <div className="flex flex-col items-center md:items-start gap-4">
             <h1 className="text-green-50 font-bold text-2xl text-center md:text-start xl:text-3xl">
@@ -147,6 +150,12 @@ const Footer = () => {
                 {/* links */}
                 <div className="flex justify-between sm:gap-8 md:flex-col md:justify-between md:h-full w-full md:w-[100px]">
                   <a
+                    href="#hero"
+                    className="text-green-50 hover:text-green-500 duration-200"
+                  >
+                    Home
+                  </a>
+                  <a
                     href="#about"
                     className="text-green-50 hover:text-green-500 duration-200"
                   >
@@ -163,12 +172,6 @@ const Footer = () => {
                     className="text-green-50 hover:text-green-500 duration-200"
                   >
                     FAQ
-                  </a>
-                  <a
-                    href="#contact"
-                    className="text-green-50 hover:text-green-500 duration-200"
-                  >
-                    Contact
                   </a>
                 </div>
                 {/* socials */}
@@ -208,7 +211,7 @@ const Footer = () => {
                     id="tiktok"
                   >
                     <svg
-                      className=" h-6"
+                      className="h-6"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 18 20"
                     >

@@ -43,7 +43,7 @@ const Navbar = () => {
           FAQ
         </a>
         <a
-          href="#contact"
+          href="#footer"
           className="text-green-950 hover:text-green-500 duration-200"
         >
           Contact
