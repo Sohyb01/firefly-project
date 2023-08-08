@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="container-all">
       {/* Hero Section */}
-      <section className="hero-section flex flex-col lg:flex-row">
+      <section id="hero" className="hero-section flex flex-col lg:flex-row">
         {/* Hero section image */}
         <div className="lake-image"></div>
         {/* Hero section content */}
@@ -59,12 +59,12 @@ export default function Home() {
           {/* Newsletter and Socials container */}
           <div className="hero-div-3 gap-4 flex flex-col md:flex-row md:justify-center md:gap-16 lg:gap-4 w-full">
             {/* Newsletter input and label */}
-            <div className="flex flex-col text-center gap-2 lg:w-full">
+            <div className="flex flex-col text-center gap-2 lg:w-full items-center">
               <p className="text-green-50 text-md">Sign up to our Newsletter</p>
               <input
                 type="text"
                 placeholder="Enter your Email"
-                className="green-effect rounded-leaf px-8 py-2 text-center text-sm bg-green-50 text-green-900 placeholder:text-green-900 placeholder:text-opacity-60"
+                className="green-effect rounded-leaf px-8 py-2 text-center text-sm bg-green-50 text-green-900 placeholder:text-green-900 placeholder:text-opacity-60 max-w-[238px]"
               />
             </div>
             {/* Social media icons and label*/}
@@ -134,7 +134,10 @@ export default function Home() {
         </div>
       </section>
       {/* ABOUT US SECTION */}
-      <section className="section__styles flex flex-col gap-4 about-us__section xl:gap-y-16 xl:gap-x-8">
+      <section
+        id="about"
+        className="section__styles flex flex-col gap-4 about-us__section xl:gap-y-16 xl:gap-x-8"
+      >
         {/* h1 and p */}
         <div className="about-us-div-1 flex flex-col items-center lg:items-start lg:justify-center lg:w-full gap-2 xl:gap-4">
           <h1 className="text-2xl text-center lg:text-start text-green-950 font-bold xl:text-3xl">
@@ -217,6 +220,140 @@ export default function Home() {
               <button className="rounded-leaf-4 w-fit bg-green-600 text-green-50 text-center px-8 py-2">
                 Book a trip
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* How it works section */}
+      <section className="section__styles flex flex-col lg:flex-row gap-4 xl:gap-8">
+        {/* Map */}
+        <div className="map-image"></div>
+        {/* h1, p, and steps */}
+        <div
+          id="how-it-works"
+          className="flex flex-col gap-8 lg:w-[100%] xl:justify-between"
+        >
+          {/* h1 and p */}
+          <div className="flex flex-col gap-2">
+            <h1 className="text-green-950 font-bold text-2xl text-center md:text-start xl:text-3xl">
+              — How it Works —
+            </h1>
+            <p className="text-left text-green-950 xl:text-lg">
+              Once you have booked a trip, which can be done here after you have
+              created an account, a{" "}
+              <span className="font-black text-green-950">
+                <span className="text-orange-600">fire</span>fly
+              </span>{" "}
+              trip manager will contact you and inform you of all the
+              information you need, as well as answer any of your questions or
+              needs.
+              <br />
+              <br />
+              <span className="font-black text-green-950">
+                <span className="text-orange-600">fire</span>fly
+              </span>{" "}
+              trips start with all the individuals embarking on the trip
+              gathering at one of{" "}
+              <span className="font-black text-green-950">
+                <span className="text-orange-600">fire</span>fly
+              </span>
+              ’s trip launch locations. Once everyone is confirmed as a member
+              of the trip, the trip begins. From there on,{" "}
+              <span className="font-black text-green-950">
+                <span className="text-orange-600">fire</span>fly
+              </span>{" "}
+              takes care of everything.
+              <br />
+              <br />
+              If members are late to the trip’s time of launch, the trip will
+              proceed without them, and they will not be refunded, however, they
+              are eligible to a discount on their next trip.
+            </p>
+          </div>
+          {/* steps container*/}
+          <div className="flex flex-col sm:flex-row gap-4 sm:justify-between md:justify-center lg:justify-between xl:justify-center xl:gap-16 items-center">
+            {/* Individual steps */}
+            <div className="step__styles">
+              <h2 className="text-sm">Step 1</h2>
+              <p className="text-lg xl:text-xl">Sign up for free</p>
+              <div className="w-full bg-green-50 h-[3px] rounded-full self-end"></div>
+            </div>
+            <div className="step__styles">
+              <h2 className="text-sm">Step 2</h2>
+              <p className="text-lg xl:text-xl">Book your trip</p>
+              <div className="w-full bg-green-50 h-[3px] rounded-full self-end"></div>
+            </div>
+            <div className="step__styles">
+              <h2 className="text-sm">Step 3</h2>
+              <p className="text-lg xl:text-xl">Enjoy your trip!</p>
+              <div className="w-full bg-green-50 h-[3px] rounded-full self-end"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* FAQ Section */}
+      <section
+        id="faq"
+        className="section__styles flex flex-col gap-4 xl:gap-8"
+      >
+        <h1 className="text-green-950 font-bold text-2xl text-center md:text-start xl:text-3xl">
+          — FAQ —
+        </h1>
+        {/* Accordion */}
+        <div className="accordion-container flex flex-col gap-4">
+          <div className="collapse collapse-arrow bg-neutral-50 shadow-xl">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-lg xl:text-xl text-green-950  font-medium">
+              What do we do?
+            </div>
+            <div className="collapse-content">
+              <p className="text-md text-neutral-800">
+                {" "}
+                consectetur adipiscing elit, sed do eiusmod tempos Lorem ipsum
+                dolor sitamet, consectetur adipiscing elit, sed do eiusmod
+                tempor Lorem ipsum dolor sit amet.
+              </p>
+            </div>
+          </div>
+          <div className="collapse collapse-arrow bg-neutral-50 shadow-xl">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-lg xl:text-xl text-green-950  font-medium">
+              How are the trips organized?
+            </div>
+            <div className="collapse-content">
+              <p className="text-md text-neutral-800">
+                {" "}
+                consectetur adipiscing elit, sed do eiusmod tempos Lorem ipsum
+                dolor sitamet, consectetur adipiscing elit, sed do eiusmod
+                tempor Lorem ipsum dolor sit amet.
+              </p>
+            </div>
+          </div>
+          <div className="collapse collapse-arrow bg-neutral-50 shadow-xl">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-lg xl:text-xl font-medium text-green-950">
+              What locations do you visit?
+            </div>
+            <div className="collapse-content">
+              <p className="text-md text-neutral-800">
+                {" "}
+                consectetur adipiscing elit, sed do eiusmod tempos Lorem ipsum
+                dolor sitamet, consectetur adipiscing elit, sed do eiusmod
+                tempor Lorem ipsum dolor sit amet.
+              </p>
+            </div>
+          </div>
+          <div className="collapse collapse-arrow bg-neutral-50 text-green-950 shadow-xl">
+            <input type="radio" name="my-accordion-2" />
+            <div className="collapse-title text-lg xl:text-xl text-green-950  font-medium">
+              Lorem ipsum dolor sit amet
+            </div>
+            <div className="collapse-content">
+              <p className="text-md text-neutral-800">
+                consectetur adipiscing elit, sed do eiusmod tempos Lorem ipsum
+                dolor sitamet, consectetur adipiscing elit, sed do eiusmod
+                tempor Lorem ipsum dolor sit amet.
+              </p>
             </div>
           </div>
         </div>

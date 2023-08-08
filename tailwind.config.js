@@ -33,5 +33,5 @@ module.exports = {
       xl: "1440px",
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: ["prettier-plugin-tailwindcss", require("daisyui")],
 };

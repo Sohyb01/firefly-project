@@ -25,25 +25,25 @@ const Navbar = () => {
       {/* Links */}
       <div className="hidden md:flex gap-6">
         <a
-          href="about"
+          href="#about"
           className="text-green-950 hover:text-green-500 duration-200"
         >
           About
         </a>
         <a
-          href="how-it-works"
+          href="#how-it-works"
           className="text-green-950 hover:text-green-500 duration-200"
         >
           How it Works
         </a>
         <a
-          href="faq"
+          href="#faq"
           className="text-green-950 hover:text-green-500 duration-200"
         >
           FAQ
         </a>
         <a
-          href="contact"
+          href="#contact"
           className="text-green-950 hover:text-green-500 duration-200"
         >
           Contact

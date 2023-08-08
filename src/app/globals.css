@@ -18,17 +18,15 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 * {
   line-height: 170%;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
 
 /* Project Styling */
 .navbar{
@@ -116,7 +114,8 @@ body {
 }
 
 .section__styles{
-  @apply py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 bg-white
+  @apply py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12
+  sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto
 }
 .tent-img{
   background-image: url(../../public/tent.jpg);
@@ -156,4 +155,15 @@ body {
     grid-row: 2/3;
     
   }
+}
+
+.map-image{
+  background-image: url(../../public/map.jpg);
+  @apply bg-cover h-[471px] md:h-[571px] xl:h-[670px] lg:h-auto lg:w-[100%]
+}
+.gradient__green{
+  background: linear-gradient(to bottom right, rgba(22, 163, 74, 100), rgba(20, 83, 45, 100));
+}
+.step__styles{
+  @apply w-[124px] h-[124px] xl:h-[150px] xl:w-[150px] rounded-md p-2 xl:py-4 grid items-center gradient__green text-center text-green-50 
 }
