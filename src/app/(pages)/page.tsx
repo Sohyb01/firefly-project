@@ -165,9 +165,9 @@ export default function Home() {
             {/* Individual Leaf */}
             <div className="flex flex-col items-center gap-8 px-4 py-8 bg-green-900 rounded-leaf-3 justify-between">
               {/* Title and text */}
-              <p className="flex flex-col gap-4 items-center text-green-50">
+              <div className="flex flex-col gap-4 items-center text-green-50">
                 <h3 className="text-xl">Camps — 2-4 Day Trips </h3>
-                <p className="text-lg">
+                <div className="text-lg">
                   Multiple-day trips across multiple destinations, including:{" "}
                   <ul>
                     <li className="flex">
@@ -187,8 +187,8 @@ export default function Home() {
                       <div className="mx-2">●</div> Multiple Photo Sessions
                     </li>
                   </ul>
-                </p>
-              </p>
+                </div>
+              </div>
               <button className="rounded-leaf-4 w-fit bg-green-600 text-green-50 text-center px-8 py-2">
                 Book a trip
               </button>
@@ -196,9 +196,9 @@ export default function Home() {
             {/* Individual Leaf */}
             <div className="flex flex-col items-center gap-8 px-4 py-8 bg-green-900 rounded-leaf-3 justify-between">
               {/* Title and text */}
-              <p className="flex flex-col gap-4 items-center text-green-50">
+              <div className="flex flex-col gap-4 items-center text-green-50">
                 <h3 className="text-xl">Hikes — 1 Day Trips </h3>
-                <p className="text-lg">
+                <div className="text-lg">
                   Single-day trips to and from the destination, including:{" "}
                   <ul>
                     <li className="flex">
@@ -214,8 +214,8 @@ export default function Home() {
                       <div className="mx-2">●</div> One Photo Session
                     </li>
                   </ul>
-                </p>
-              </p>
+                </div>
+              </div>
               <button className="rounded-leaf-4 w-fit bg-green-600 text-green-50 text-center px-8 py-2">
                 Book a trip
               </button>

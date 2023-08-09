@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email    String @unique
+  password String
+  role String
+  name String
+  id       String @id @default(uuid())
+  trips Trip[]
+}
+
+model Trip {
+  departureDate DateTime @default(now())
+  duration Int
+  id String @id @default(uuid())
+  userId String
+  user User @relation(fields:[userId], references: [id])
+}
+
+model Email {
+  email String @unique
+}
+
+
+// To transform this code into actual SQL:
+// npx prisma generate
+// then, this creates the migration
+// npx prisma migrate dev --name init --create-only
+// then, this deploys the actual migration (the changes to the database schema)
+// npx prisma migrate deploy
