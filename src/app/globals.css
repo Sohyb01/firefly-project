@@ -173,3 +173,23 @@ tr, th, td, tfoot, thead {
   background-color: white !important;
   @apply text-neutral-800
 }
+
+.view-image{
+  background-image: url(../../public/view.jpg);
+  @apply bg-center bg-cover h-[300px] md:h-[400px] lg:h-[549px] xl:w-[380px] w-full
+}
+
+.custom-datepicker::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the icon color */
+  opacity: 0.7; /* Adjust the opacity if needed */
+}
+
+.custom-datepicker::-moz-calendar-picker-indicator {
+  filter: invert(1); /* Invert the icon color */
+  opacity: 0.7; /* Adjust the opacity if needed */
+}
+
+.custom-datepicker::-ms-calendar-picker-indicator {
+  filter: invert(1); /* Invert the icon color */
+  opacity: 0.7; /* Adjust the opacity if needed */
+}
