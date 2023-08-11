@@ -176,7 +176,7 @@ tr, th, td, tfoot, thead {
 
 .view-image{
   background-image: url(../../public/view.jpg);
-  @apply bg-center bg-cover h-[300px] md:h-[400px] lg:h-[549px] xl:w-[380px] w-full
+  @apply bg-center bg-cover h-[300px] md:h-[400px] lg:h-[549px] lg:w-[380px] w-full
 }
 
 .custom-datepicker::-webkit-calendar-picker-indicator {

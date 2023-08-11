@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/lib/prisma";
 
-// GET (All trips)
-export async function GET() {
+// GET all trips
+export async function GET(request: NextRequest) {
   const allTrips = await prisma.trip.findMany({});
   return NextResponse.json({ allTrips });
 }

@@ -26,8 +26,10 @@ model Trip {
   duration Int
   id String @id @default(uuid())
   userId String
+  price Float
   user User @relation(fields:[userId], references: [id])
   
+  numberOfPeople Int
   bookedAt DateTime @default(now())
 }
 

@@ -2,7 +2,6 @@
 
 import { useFormik } from "formik";
 import { contactFormSchema } from "../validations/contactform";
-import prisma from "../lib/prisma";
 
 interface messageFormData {
   name: string;

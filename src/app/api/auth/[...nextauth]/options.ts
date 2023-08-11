@@ -39,9 +39,9 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
-  // pages: {
-  //   signIn: "/auth/signin"
-  // }
+  pages: {
+    signIn: "/signin",
+  },
   //   callbacks: {
   //     async jwt({ token, user }) {
   //       if (user && user.email) {
@@ -62,17 +62,16 @@ export const options: NextAuthOptions = {
   //   },
 
   //   Callbacks is how you persist the user role!
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) token.role = user.role;
-  //     return token;
-  //   },
-  //   // If you want to use the role in client components:
-  //   async session({ session, token }) {
-  //     if (session?.user) session.user.role = token.role;
-  //     return session;
-  //   },
-  // },
-  // pages: [],
-  // secret: process.env["NEXTAUTH_SECRET"]
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.role = user.role;
+      return token;
+    },
+    // If you want to use the role in client components:
+    async session({ session, token }) {
+      if (session?.user) session.user.role = token.role;
+      return session;
+    },
+  },
+  secret: process.env["NEXTAUTH_SECRET"],
 };
