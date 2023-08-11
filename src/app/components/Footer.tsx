@@ -2,10 +2,28 @@
 
 import { useFormik } from "formik";
 import { contactFormSchema } from "../validations/contactform";
+import prisma from "../lib/prisma";
+
+interface messageFormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Footer = () => {
-  const onSubmit = async (values: Object, actions: any) => {
+  const onSubmit = async (values: messageFormData, actions: any) => {
     console.log(values);
+    const data = {
+      writer: values.name,
+      content: values.message,
+      email: values.email,
+    };
+    const body = JSON.stringify(data);
+    await fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body,
+    });
     await new Promise((res) => setTimeout(res, 1000));
     // actions.resetForm();
   };

@@ -17,20 +17,34 @@ model User {
   name String
   id       String @id @default(uuid())
   trips Trip[]
+
+  joinedAt DateTime @default(now())
 }
 
 model Trip {
-  departureDate DateTime @default(now())
+  departureDate DateTime
   duration Int
   id String @id @default(uuid())
   userId String
   user User @relation(fields:[userId], references: [id])
+  
+  bookedAt DateTime @default(now())
 }
 
 model Email {
   email String @unique
+
+  joinedAt DateTime @default(now())
 }
 
+model Message {
+  writer String
+  email String
+  content String
+  id String @id @default(uuid())
+
+  sentAt DateTime @default(now())
+}
 
 // To transform this code into actual SQL:
 // npx prisma generate

@@ -166,3 +166,10 @@ html {
 .step__styles {
   @apply w-[124px] h-[124px] xl:h-[150px] xl:w-[150px] rounded-md p-2 xl:py-4 grid items-center gradient__green text-center text-green-50;
 }
+
+
+/* Dashboard */
+tr, th, td, tfoot, thead {
+  background-color: white !important;
+  @apply text-neutral-800
+}

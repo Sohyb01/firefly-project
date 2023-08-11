@@ -39,6 +39,9 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  // pages: {
+  //   signIn: "/auth/signin"
+  // }
   //   callbacks: {
   //     async jwt({ token, user }) {
   //       if (user && user.email) {
