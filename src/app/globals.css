@@ -193,3 +193,8 @@ tr, th, td, tfoot, thead {
   filter: invert(1); /* Invert the icon color */
   opacity: 0.7; /* Adjust the opacity if needed */
 }
+
+.lantern-image{
+  background-image: url(../../public/lantern.jpg);
+  @apply bg-center bg-cover min-h-[400px] md:h-auto lg:max-w-[380px] w-full md:max-w-[344px]
+}
