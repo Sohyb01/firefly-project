@@ -20,6 +20,7 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
+        // console.log(credentials);
         if (!credentials?.email || !credentials.password) {
           return null;
         }
@@ -40,7 +41,7 @@ export const options: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/signin",
+    signIn: "/SigninPage",
   },
   //   callbacks: {
   //     async jwt({ token, user }) {

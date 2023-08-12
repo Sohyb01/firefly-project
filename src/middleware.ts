@@ -9,9 +9,9 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => token?.role === "admin",
+      authorized: ({ token }) => token?.role === ("ADMIN" || "USER"),
     },
   }
 );
 
-export const config = { matcher: ["/dashboard"] };
+export const config = { matcher: ["/dashboard", "/book"] };

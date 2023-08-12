@@ -1,10 +1,11 @@
+import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
   return (
     <nav className="navbar z-50 bg-green-50 flex justify-between items-center px-6 py-4 rounded-full fixed top-4 shadow-2xl">
       {/* Logo */}
-      <a href="#" className="nav-logo">
+      <Link href="/" className="nav-logo">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="68"
@@ -21,7 +22,7 @@ const Navbar = () => {
             fill="#052E16"
           />
         </svg>
-      </a>
+      </Link>
       {/* Links */}
       <div className="hidden md:flex gap-6">
         <a
@@ -50,9 +51,12 @@ const Navbar = () => {
         </a>
       </div>
       {/* Button */}
-      <button className="rounded-leaf-2 bg-green-600 text-green-50 text-center px-8 py-2 hidden md:block">
+      <Link
+        href="/book"
+        className="bg-green-600 rounded-xl py-2 px-8 text-green-50 hidden md:block"
+      >
         Book a Trip
-      </button>
+      </Link>
       {/* Menu Button */}
       <button className="md:hidden">
         <svg

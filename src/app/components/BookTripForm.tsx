@@ -2,9 +2,10 @@
 
 import { useFormik } from "formik";
 import { tripFormSchema } from "../validations/tripform";
+import { useEffect, useState } from "react";
 
 interface tripFormData {
-  type: string;
+  duration: number;
   trip: string;
   date: string;
   numberOfPeople: number;
@@ -34,7 +35,7 @@ const BookTripForm = () => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      type: "Hike (1 Day)",
+      duration: 1,
       trip: "Mountains 1",
       date: "",
       numberOfPeople: 1,
@@ -42,6 +43,16 @@ const BookTripForm = () => {
     validationSchema: tripFormSchema,
     onSubmit,
   });
+
+  const [tripPrice, setTripPrice] = useState(100);
+
+  useEffect(() => {
+    const price = Math.floor(
+      (values.duration * values.numberOfPeople * 100) /
+        (1 + values.duration * 0.05)
+    );
+    setTripPrice(price);
+  }, [values]);
 
   return (
     <div className="flex flex-col lg:flex-row shadow-lg xl:w-fit">
@@ -56,23 +67,23 @@ const BookTripForm = () => {
         <div className="flex flex-col gap-4">
           {/* Trip type */}
           <div className="flex flex-col">
-            <p>Trip type:</p>
+            <p>Trip duration:</p>
             <select
               className="select bg-slate-200 text-sm rounded-xl text-center"
-              id="type"
-              name="type"
+              id="duration"
+              name="duration"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.type}
+              value={values.duration}
             >
               {/* <option selected disabled>
                 Pick a trip type
               </option> */}
-              <option>Hike (1 Day)</option>
-              <option>Camping (2 Days)</option>
-              <option>Camping (3 Days)</option>
-              <option>Camping (4 Days)</option>
-              <option>Camping (5 Days)</option>
+              <option value={1}>Hike (1 Day)</option>
+              <option value={2}>Camping (2 Days)</option>
+              <option value={3}>Camping (3 Days)</option>
+              <option value={4}>Camping (4 Days)</option>
+              <option value={5}>Camping (5 Days)</option>
             </select>
           </div>
           {/* Choose a trip */}
@@ -89,9 +100,10 @@ const BookTripForm = () => {
               {/* <option selected disabled>
                 Pick a Destination
               </option> */}
-              <option>Mountains 1</option>
-              <option>Mountains 2</option>
-              <option>Mountains 3</option>
+              <option>Mountain</option>
+              <option>Lake</option>
+              <option>River</option>
+              <option>Valley</option>
             </select>
           </div>
           {/* Date and People */}
@@ -118,14 +130,14 @@ const BookTripForm = () => {
                 onBlur={handleBlur}
                 value={values.numberOfPeople}
               >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
               </select>
             </div>
           </div>
@@ -134,7 +146,7 @@ const BookTripForm = () => {
         {/* Price */}
         <div className="flex flex-col text-center">
           <p className="text-sm">Total Checkout Price:</p>
-          <h2 className="text-5xl">$249.99</h2>
+          <h2 className="text-5xl">${tripPrice}</h2>
         </div>
         {/* Submit button */}
         <button
@@ -152,3 +164,6 @@ const BookTripForm = () => {
 };
 
 export default BookTripForm;
+function UseState(arg0: number): [any, any] {
+  throw new Error("Function not implemented.");
+}

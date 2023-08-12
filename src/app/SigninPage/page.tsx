@@ -1,4 +1,23 @@
-const page = () => {
+"use client";
+
+import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { FormEvent, useRef } from "react";
+
+const SigninPage = () => {
+  const email = useRef("");
+  const password = useRef("");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const result = await signIn("credentials", {
+      email: email.current,
+      password: password.current,
+      redirect: true,
+      callbackUrl: "/book",
+    });
+  };
+
   return (
     <section className="section__styles flex flex-col gap-4 items-center">
       {/* H1 and subtext */}
@@ -15,7 +34,7 @@ const page = () => {
         {/* Form */}
         <form
           className="flex flex-col gap-8 text-neutral-800 p-4 md:justify-between w-full"
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           {/* Inputs area */}
           <div className="flex flex-col gap-4">
@@ -23,26 +42,22 @@ const page = () => {
             <div className="flex flex-col">
               <p>Email Address</p>
               <input
+                onChange={(e) => (email.current = e.target.value)}
                 className="bg-white border-solid border-neutral-300 border-[1px] text-sm rounded-xl text-center p-2"
                 id="email"
                 name="email"
                 type="email"
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // value={values.type}
               ></input>
             </div>
             {/* Password */}
             <div className="flex flex-col">
               <p>Password</p>
               <input
+                onChange={(e) => (password.current = e.target.value)}
                 className="bg-white border-solid border-neutral-300 border-[1px] text-sm rounded-xl text-center p-2"
                 id="email"
                 name="password"
                 type="password"
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // value={values.type}
               ></input>
             </div>
           </div>
@@ -55,7 +70,7 @@ const page = () => {
             type="submit"
             className=" bg-green-600 rounded-xl py-2 px-8 text-green-50  disabled:bg-neutral-800"
           >
-            Create Account
+            Log in
           </button>
         </form>
       </div>
@@ -63,4 +78,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SigninPage;

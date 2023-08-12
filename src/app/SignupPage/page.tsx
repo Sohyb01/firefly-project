@@ -2,6 +2,7 @@
 
 import { useFormik } from "formik";
 import { signUpFormSchema } from "../validations/signupform";
+import { redirect } from "next/navigation";
 
 interface signUpDetails {
   firstName: String;
@@ -13,14 +14,23 @@ interface signUpDetails {
 
 const SignupPage = () => {
   const onSubmit = async (values: signUpDetails, actions: any) => {
-    console.log(values);
-    const data = values;
-    // const body = JSON.stringify(data);
-    // await fetch("/api/users", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: body,
-    // });
+    const { confirmPassword, ...data } = values;
+    // console.log(data);
+    const body = JSON.stringify(data);
+    await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body,
+    }).then((res) => {
+      if (res.ok) {
+        alert("Account created successfully!");
+        redirect("/SigninPage");
+      } else {
+        alert(
+          "An account with this email already exists, please log in or sign up with another Email!"
+        );
+      }
+    });
     await new Promise((res) => setTimeout(res, 1000));
     // actions.resetForm();
   };
@@ -77,6 +87,13 @@ const SignupPage = () => {
                   onBlur={handleBlur}
                   value={values.firstName}
                 ></input>
+                {errors.firstName && touched.firstName && (
+                  <label className="label">
+                    <span className="label-text-alt text-md text-red-400">
+                      {errors.firstName}
+                    </span>
+                  </label>
+                )}
               </div>
               <div className="flex flex-col min-w-[134px] w-full">
                 <p>Last Name</p>
@@ -89,6 +106,13 @@ const SignupPage = () => {
                   onBlur={handleBlur}
                   value={values.lastName}
                 ></input>
+                {errors.lastName && touched.lastName && (
+                  <label className="label">
+                    <span className="label-text-alt text-md text-red-400">
+                      {errors.lastName}
+                    </span>
+                  </label>
+                )}
               </div>
             </div>
             {/* Email */}
@@ -103,6 +127,13 @@ const SignupPage = () => {
                 onBlur={handleBlur}
                 value={values.email}
               ></input>
+              {errors.email && touched.email && (
+                <label className="label">
+                  <span className="label-text-alt text-md text-red-400">
+                    {errors.email}
+                  </span>
+                </label>
+              )}
             </div>
             {/* Password */}
             <div className="flex flex-col">
@@ -116,6 +147,13 @@ const SignupPage = () => {
                 onBlur={handleBlur}
                 value={values.password}
               ></input>
+              {errors.password && touched.password && (
+                <label className="label">
+                  <span className="label-text-alt text-md text-red-400">
+                    {errors.password}
+                  </span>
+                </label>
+              )}
             </div>
             {/* Confirm Password */}
             <div className="flex flex-col">
@@ -129,14 +167,21 @@ const SignupPage = () => {
                 onBlur={handleBlur}
                 value={values.confirmPassword}
               ></input>
+              {errors.confirmPassword && touched.confirmPassword && (
+                <label className="label">
+                  <span className="label-text-alt text-md text-red-400">
+                    {errors.confirmPassword}
+                  </span>
+                </label>
+              )}
             </div>
           </div>
 
           {/* Submit button */}
           <button
-            // disabled={
-            //   Object.keys(errors).length > 0 || isSubmitting ? true : false
-            // }
+            disabled={
+              Object.keys(errors).length > 0 || isSubmitting ? true : false
+            }
             type="submit"
             className=" bg-green-600 rounded-xl py-2 px-8 text-green-50  disabled:bg-neutral-800"
           >

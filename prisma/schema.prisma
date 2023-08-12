@@ -11,25 +11,32 @@ datasource db {
 }
 
 model User {
+  firstName String
+  lastName String
   email    String @unique
   password String
-  role String
-  name String
+  // 
   id       String @id @default(uuid())
+  role Role @default(USER)
   trips Trip[]
-
   joinedAt DateTime @default(now())
+}
+
+enum Role{
+  USER
+  ADMIN
 }
 
 model Trip {
   departureDate String
   duration Int
-  id String @id @default(uuid())
-  userId String
+  numberOfPeople Int
+  // 
   price Float
+  userId String
+  id String @id @default(uuid())
   user User @relation(fields:[userId], references: [id])
   
-  numberOfPeople Int
   bookedAt DateTime @default(now())
 }
 

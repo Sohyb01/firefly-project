@@ -3,11 +3,22 @@ import prisma from "@/app/lib/prisma";
 
 // GET (All Users)
 export async function GET(request: NextRequest) {
-  const allUsers = await prisma.user.findMany({
-    include: {
-      trips: true,
-    },
-  });
+  // Gets the search params from the url = /users?userId=[user id here]
+  const { searchParams } = new URL(request.url);
+  const userId = searchParams.get("userId");
+  // If the user id exists in the url
+  if (userId !== null) {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    if (user) return NextResponse.json({ user });
+    else {
+      throw Error(`No User Found with ID ${userId}`);
+    }
+  }
+  const allUsers = await prisma.user.findMany({});
   return NextResponse.json({ allUsers });
 }
 
