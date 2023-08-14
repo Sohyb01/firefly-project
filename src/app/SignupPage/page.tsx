@@ -3,6 +3,7 @@
 import { useFormik } from "formik";
 import { signUpFormSchema } from "../validations/signupform";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 interface signUpDetails {
   firstName: String;
@@ -61,7 +62,10 @@ const SignupPage = () => {
       <div className="flex flex-col text-center w-full">
         <h1 className="text-green-950 text-2xl xl:text-3xl">Sign up</h1>
         <p className="text-neutral-800 text-sm xl:text-md">
-          Already have an account? <span className="text-blue-600">Log in</span>
+          Already have an account?{" "}
+          <Link href="SigninPage" className="text-blue-600">
+            Log in
+          </Link>
         </p>
       </div>
       <div className="flex flex-col md:flex-row shadow-lg w-full max-w-[776px]">

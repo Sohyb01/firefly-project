@@ -1,24 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../lib/prisma";
+import { options } from "../api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
+
+async function getAllUsers() {
+  const res = await fetch(`http://localhost:3000/api/users`, {
+    cache: "no-cache",
+  });
+  return res.json();
+}
+
+async function getAllTrips() {
+  const res = await fetch(`http://localhost:3000/api/trips`, {
+    cache: "no-cache",
+  });
+  return res.json();
+}
+
+async function getAllMessages() {
+  const res = await fetch(`http://localhost:3000/api/messages`, {
+    cache: "no-cache",
+  });
+  return res.json();
+}
 
 const Dashboard = async () => {
-  const allUsers = await prisma.user.findMany({
-    include: {
-      trips: true,
-    },
-  });
+  const session = await getServerSession(options);
+  if (!session || session.user.role != "ADMIN") {
+    redirect("/SigninPage?callbackUrl=/dashboard");
+  }
 
-  const deleteUser = async (userId: string) => {
-    await prisma.user.delete({
-      where: {
-        id: userId,
-      },
-    });
-  };
+  // Get all the user data
+  const usersData = await getAllUsers();
+  const allUsersData = usersData.allUsers; //This is what will be rendered on the page
+
+  // Get all the trips data
+  const tripsData = await getAllTrips();
+  const allTripsData = tripsData.allTrips; //This is what will be rendered on the page
+
+  // Get all the trips data
+  const messagesData = await getAllMessages();
+  const allMessagesData = messagesData.allMessages; //This is what will be rendered on the page
 
   return (
     <div className="section__styles flex flex-col gap-16 bg-neutral-200">
-      {/* Table and Label */}
+      {/* Users table and label */}
       <div className="">
         <h1 className="text-neutral-800 text-2xl">Users</h1>
         <div className="p-4 bg-white shadow-lg rounded-2xl">
@@ -32,6 +59,7 @@ const Dashboard = async () => {
                   <td>Password</td>
                   <td>User ID</td>
                   <td>Role</td>
+                  <td>Balance</td>
                   <td>Date Joined</td>
                   <td></td>
                   <td></td>
@@ -39,17 +67,88 @@ const Dashboard = async () => {
                 </tr>
               </thead>
               <tbody>
-                {allUsers.map((user, key) => (
+                {allUsersData.map((user: any, key: number) => (
                   <tr key={key}>
                     <th>{key + 1}</th>
-                    <td>{user.name}</td>
+                    <td>{user.firstName}</td>
                     <td>{user.email}</td>
                     <td>{user.password}</td>
                     <td>{user.id}</td>
                     <td>{user.role}</td>
-                    <td>
-                      <button className="text-red-500">Delete</button>
-                    </td>
+                    <td>${user.balance}</td>
+                    <td>{user.joinedAt}</td>
+                    <th className="text-neutral-200"></th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {/* Trips table and label */}
+      <div className="">
+        <h1 className="text-neutral-800 text-2xl">Trips</h1>
+        <div className="p-4 bg-white shadow-lg rounded-2xl">
+          <div className="overflow-x-auto text-neutral-800">
+            <table className="table table-xs table-pin-rows table-pin-cols">
+              <thead className="bg-white">
+                <tr className="bg-white">
+                  <th className="bg-white">1</th>
+                  <td>Departure Date</td>
+                  <td>Duration</td>
+                  <td>Number of People</td>
+                  <td>Destination</td>
+                  <td>Price</td>
+                  <td>Trip ID</td>
+                  <td>Booked by</td>
+                  <td>Time of booking</td>
+                </tr>
+              </thead>
+              <tbody>
+                {allTripsData.map((trip: any, key: number) => (
+                  <tr key={key}>
+                    <th>{key + 1}</th>
+                    <td>{trip.departureDate}</td>
+                    <td>{trip.duration}</td>
+                    <td>{trip.numberOfPeople}</td>
+                    <td>{trip.destination}</td>
+                    <td>${trip.price}</td>
+                    <td>{trip.id}</td>
+                    <td>{trip.userId}</td>
+                    <td>{trip.bookedAt}</td>
+                    <th className="text-neutral-200"></th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {/* Messages table and label */}
+      <div className="">
+        <h1 className="text-neutral-800 text-2xl">Messages</h1>
+        <div className="p-4 bg-white shadow-lg rounded-2xl">
+          <div className="overflow-x-auto text-neutral-800">
+            <table className="table table-xs table-pin-rows table-pin-cols">
+              <thead className="bg-white">
+                <tr className="bg-white">
+                  <th className="bg-white">1</th>
+                  <td>Writer</td>
+                  <td>Writer email</td>
+                  <td>Content</td>
+                  <td>Message ID</td>
+                  <td>Sent At</td>
+                </tr>
+              </thead>
+              <tbody>
+                {allMessagesData.map((message: any, key: number) => (
+                  <tr key={key}>
+                    <th>{key + 1}</th>
+                    <td>{message.writer}</td>
+                    <td>{message.email}</td>
+                    <td>{message.content}</td>
+                    <td>{message.id}</td>
+                    <td>{message.sentAt}</td>
                     <th className="text-neutral-200"></th>
                   </tr>
                 ))}

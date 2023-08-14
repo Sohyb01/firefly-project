@@ -9,7 +9,8 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => token?.role === ("ADMIN" || "USER"),
+      authorized: ({ token }) =>
+        token?.role === "ADMIN" || token?.role === "USER",
     },
   }
 );

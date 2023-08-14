@@ -1,6 +1,5 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/lib/prisma";
 
 export const options: NextAuthOptions = {
@@ -30,9 +29,11 @@ export const options: NextAuthOptions = {
           },
         });
 
+        // console.log(user);
         if (!user) return null;
 
         if (user.password == credentials.password) {
+          console.log("login successful");
           return user;
         } else {
           return null;
@@ -43,35 +44,46 @@ export const options: NextAuthOptions = {
   pages: {
     signIn: "/SigninPage",
   },
-  //   callbacks: {
-  //     async jwt({ token, user }) {
-  //       if (user && user.email) {
-  //         token.email = user.email;
-  //         token.id = user.id;
-  //         token.fullName = user.fullName;
-  //       }
-  //       return token;
-  //     },
-  //     async session({ session, token, user }) {
-  //       if (session?.user) {
-  //         session.user.email = token.email;
-  //         session.user.id = token.id;
-  //         session.user.fullName = token.fullName;
-  //       }
-  //       return session;
-  //     },
-  //   },
 
-  //   Callbacks is how you persist the user role!
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     if (user) token.role = user.role;
+  //     return token;
+  //   },
+  //   // If you want to use the role in client components:
+  //   async session({ session, token }) {
+  //     if (session?.user) session.user.role = token.role;
+  //     return session;
+  //   },
+  // },
+
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = user.role;
+      if (user) {
+        token.name = `${user.firstName} ${user.lastName}`;
+        token.email = user.email;
+        token.balance = user.balance;
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+        token.role = user.role;
+        token.id = user.id;
+      }
       return token;
     },
     // If you want to use the role in client components:
     async session({ session, token }) {
-      if (session?.user) session.user.role = token.role;
+      if (session?.user) {
+        // session.user.name = token.name
+        session.user.email = token.email;
+        session.user.firstName = token.firstName;
+        session.user.lastName = token.lastName;
+        session.user.role = token.role;
+        session.user.id = token.id;
+      }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      return "/";
     },
   },
   secret: process.env["NEXTAUTH_SECRET"],

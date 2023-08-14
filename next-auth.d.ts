@@ -1,4 +1,4 @@
-import { DefaultSession, DefaultUser } from "next-auth";
+// import { DefaultSession, DefaultUser } from "next-auth";
 import { JWT, DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
@@ -7,6 +7,7 @@ declare module "next-auth" {
       firstName: string;
       lastName: string;
       email: string;
+      balance: number;
       password: string;
       id: string;
       role: string;
@@ -19,6 +20,7 @@ declare module "next-auth" {
     firstName: string;
     lastName: string;
     email: string;
+    balance: number;
     password: string;
     id: string;
     role: string;
@@ -32,6 +34,7 @@ declare module "next-auth/jwt" {
     firstName: string;
     lastName: string;
     email: string;
+    balance: number;
     password: string;
     id: string;
     role: string;

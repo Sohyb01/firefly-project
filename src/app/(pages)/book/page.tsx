@@ -4,16 +4,26 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import BookTripForm from "@/app/components/BookTripForm";
 
+async function getUserData() {
+  const session = await getServerSession(options);
+  const res = await fetch(
+    `http://localhost:3000/api/trips?userId=${session?.user.id}`,
+    {
+      cache: "no-cache",
+    }
+  );
+  return res.json();
+}
+
 const BookingPage = async () => {
   const session = await getServerSession(options);
-  const userTrips = await prisma.trip.findMany({
-    where: {
-      userId: "c7c8f18d-857c-44ce-9b72-47da4d26338e",
-    },
-  });
-
-  //   console.log("User trips:");
-  //   console.log(userTrips);
+  const tripData = await getUserData();
+  // const tripData = await prisma.trip.findMany({
+  //   where: {
+  //     userId: session?.user.id,
+  //   },
+  // });
+  console.log(tripData);
 
   return (
     <div className="container-all pt-[120px]">
@@ -48,13 +58,13 @@ const BookingPage = async () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {userTrips.map((trip, key) => (
+                  {tripData.userTrips.map((trip: any, key: number) => (
                     <tr key={key}>
                       <th>{key + 1}</th>
                       <td>{trip.departureDate}</td>
                       <td>{trip.duration}</td>
                       <td>{trip.numberOfPeople}</td>
-                      <td>{trip.price}</td>
+                      <td>${trip.price}</td>
                       <td>{trip.id}</td>
                       <td>{trip.bookedAt.toString()}</td>
                     </tr>

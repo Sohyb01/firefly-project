@@ -17,11 +17,18 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
   min-height: 100vh;
+  @apply bg-white
 }
 * {
   line-height: 170%;
+}
+
+input:-webkit-autofill,
+select:-webkit-autofill {
+  /* Set the background color to your desired value */
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: #001407;
 }
 
 html {
@@ -197,5 +204,5 @@ tr, th, td, tfoot, thead {
 
 .lantern-image{
   background-image: url(../../public/lantern.jpg);
-  @apply bg-center bg-cover min-h-[400px] md:h-auto lg:max-w-[380px] w-full md:max-w-[344px]
+  @apply bg-center bg-cover min-h-[400px] md:min-h-[476px] md:h-auto lg:max-w-[380px] w-full md:max-w-[344px]
 }

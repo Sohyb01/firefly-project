@@ -1,27 +1,60 @@
 "use client";
 
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+
 import { useFormik } from "formik";
 import { tripFormSchema } from "../validations/tripform";
 import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
 
 interface tripFormData {
   duration: number;
-  trip: string;
-  date: string;
+  destination: string;
+  departureDate: string;
   numberOfPeople: number;
 }
 
+interface submittedData {
+  duration: number;
+  destination: string;
+  departureDate: string;
+  numberOfPeople: number;
+  price: number;
+  userId: string;
+}
+
+// const addNewTrip = async (body: submittedData) => {
+//   const session = await getSession();
+//     const res = await fetch("/api/messages", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: body,
+//     });
+//     return res.json();
+// }
+
 const BookTripForm = () => {
   const onSubmit = async (values: tripFormData, actions: any) => {
-    console.log(values);
-    // const data = values;
-    // const body = JSON.stringify(data);
-    // await fetch("/api/trips", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: body,
-    // });
-    // await new Promise((res) => setTimeout(res, 1000));
+    const session = await getSession();
+    if (!session) return null;
+    const fullValues = {
+      duration: parseInt(values.duration.toString()),
+      destination: values.destination,
+      departureDate: values.departureDate,
+      numberOfPeople: parseInt(values.numberOfPeople.toString()),
+      price: tripPrice,
+      userId: session.user.id,
+    };
+    // console.log(fullValues)
+    const data = JSON.stringify(fullValues);
+    // console.log(data);
+    await fetch("/api/trips", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: data,
+    });
+    await new Promise((res) => setTimeout(res, 1000));
     // actions.resetForm();
   };
 
@@ -36,8 +69,8 @@ const BookTripForm = () => {
   } = useFormik({
     initialValues: {
       duration: 1,
-      trip: "Mountains 1",
-      date: "",
+      destination: "MOUNTAIN",
+      departureDate: "",
       numberOfPeople: 1,
     },
     validationSchema: tripFormSchema,
@@ -91,19 +124,18 @@ const BookTripForm = () => {
             <p>Choose a trip:</p>
             <select
               className="select bg-slate-200 text-sm rounded-xl text-center"
-              id="trip"
-              name="trip"
+              id="destination"
+              name="destination"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.trip}
+              value={values.destination}
             >
               {/* <option selected disabled>
                 Pick a Destination
               </option> */}
-              <option>Mountain</option>
-              <option>Lake</option>
-              <option>River</option>
-              <option>Valley</option>
+              <option value={"Mountain"}>Mountain</option>
+              <option value={"Lake"}>Lake</option>
+              <option value={"River"}>River</option>
             </select>
           </div>
           {/* Date and People */}
@@ -113,11 +145,11 @@ const BookTripForm = () => {
               <input
                 type="date"
                 className="bg-slate-200 text-sm rounded-xl py-2 px-8 text-center custom-datepicker"
-                id="date"
-                name="date"
+                id="departureDate"
+                name="departureDate"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.date}
+                value={values.departureDate}
               ></input>
             </div>
             <div className="flex flex-col min-w-[134px] w-full">

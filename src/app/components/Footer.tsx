@@ -89,6 +89,7 @@ const Footer = () => {
               <form
                 className="flex flex-col grid-flow-row items-center gap-4 md:gap-8 w-full"
                 onSubmit={handleSubmit}
+                autoComplete="off"
               >
                 {/* name and email */}
                 <div className="flex items-end gap-4 md:gap-8 w-full">

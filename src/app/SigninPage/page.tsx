@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import Link from "next/link";
 import { FormEvent, useRef } from "react";
 
 const SigninPage = () => {
@@ -25,7 +25,9 @@ const SigninPage = () => {
         <h1 className="text-green-950 text-2xl xl:text-3xl">Sign In</h1>
         <p className="text-neutral-800 text-sm xl:text-md">
           Don&apos;t have an account?{" "}
-          <span className="text-blue-600">Sign Up</span>
+          <Link href="/SignupPage" className="text-blue-600">
+            Sign Up
+          </Link>
         </p>
       </div>
       <div className="flex flex-col md:flex-row shadow-lg w-full max-w-[776px]">

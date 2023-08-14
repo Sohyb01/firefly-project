@@ -1,9 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await getServerSession(options);
+  // console.log(session?.user);
   return (
-    <nav className="navbar z-50 bg-green-50 flex justify-between items-center px-6 py-4 rounded-full fixed top-4 shadow-2xl">
+    <nav className="navbar z-50 bg-white flex justify-between items-center px-6 py-4 rounded-full fixed top-4 shadow-2xl">
       {/* Logo */}
       <Link href="/" className="nav-logo">
         <svg
@@ -49,15 +53,57 @@ const Navbar = () => {
         >
           Contact
         </a>
+        <Link
+          href="/book"
+          className="text-green-950 hover:text-green-500 duration-200"
+        >
+          Book a Trip
+        </Link>
       </div>
       {/* Button */}
-      <Link
-        href="/book"
-        className="bg-green-600 rounded-xl py-2 px-8 text-green-50 hidden md:block"
-      >
-        Book a Trip
-      </Link>
-      {/* Menu Button */}
+      {session == undefined && (
+        <Link
+          href="/SigninPage"
+          className="bg-green-600 rounded-xl py-2 px-8 text-green-50 hidden md:block"
+        >
+          Sign up
+        </Link>
+      )}
+      {session != undefined && (
+        <details className="dropdown">
+          <summary className="text-neutral-800">{session.user.email}</summary>
+          <ul className="p-2 shadow menu dropdown-content mt-2 bg-white text-green-950 rounded-xl">
+            {session.user.role === "ADMIN" && (
+              <li>
+                <Link className="text-green-600" href="/dashboard">
+                  Admin Dashboard
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link href="/book">Your Trips</Link>
+            </li>
+            <li className="md:hidden">
+              <a href="/#about">About us</a>
+            </li>
+            <li className="md:hidden">
+              <a href="/#how-it-works">How it works</a>
+            </li>
+            <li className="md:hidden">
+              <a href="/#faq">FAQ</a>
+            </li>
+            <li className="md:hidden">
+              <a href="/#footer">Contact Us</a>
+            </li>
+            <li>
+              <Link href="/api/auth/signout" className="text-red-500">
+                Sign out
+              </Link>
+            </li>
+          </ul>
+        </details>
+      )}
+      {/* Menu Button
       <button className="md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +116,7 @@ const Navbar = () => {
           <path d="M1.5 6H17.5" stroke="green" strokeWidth="1.5" />
           <path d="M1.5 11H17.5" stroke="green" strokeWidth="1.5" />
         </svg>
-      </button>
+      </button> */}
     </nav>
   );
 };
