@@ -5,7 +5,6 @@ import BookTripForm from "@/app/components/BookTripForm";
 
 async function getUserData() {
   const host = process.env.HOST;
-  console.log(host);
   const session = await getServerSession(options);
   const res = await fetch(`${host}/api/trips?userId=${session?.user.id}`, {
     cache: "no-cache",
