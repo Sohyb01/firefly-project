@@ -18,7 +18,7 @@ const Footer = () => {
       email: values.email,
     };
     const body = JSON.stringify(data);
-    await fetch("/api/messages", {
+    await fetch(`${process.env.HOST}/api/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: body,

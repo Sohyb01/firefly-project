@@ -1,17 +1,15 @@
-import prisma from "@/app/lib/prisma";
 import React from "react";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import BookTripForm from "@/app/components/BookTripForm";
 
 async function getUserData() {
+  const host = process.env.HOST;
+  console.log(host);
   const session = await getServerSession(options);
-  const res = await fetch(
-    `http://localhost:3000/api/trips?userId=${session?.user.id}`,
-    {
-      cache: "no-cache",
-    }
-  );
+  const res = await fetch(`${host}/api/trips?userId=${session?.user.id}`, {
+    cache: "no-cache",
+  });
   return res.json();
 }
 

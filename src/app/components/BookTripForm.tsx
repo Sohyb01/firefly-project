@@ -49,7 +49,7 @@ const BookTripForm = () => {
     // console.log(fullValues)
     const data = JSON.stringify(fullValues);
     // console.log(data);
-    await fetch("/api/trips", {
+    await fetch(`${process.env.HOST}/api/trips`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: data,

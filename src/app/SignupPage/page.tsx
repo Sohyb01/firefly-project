@@ -18,7 +18,7 @@ const SignupPage = () => {
     const { confirmPassword, ...data } = values;
     // console.log(data);
     const body = JSON.stringify(data);
-    await fetch("/api/users", {
+    await fetch(`${process.env.HOST}/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: body,
