@@ -127,34 +127,41 @@ const Dashboard = async () => {
       {/* Messages table and label */}
       <div className="">
         <h1 className="text-neutral-800 text-2xl">Messages</h1>
-        <div className="p-4 bg-white shadow-lg rounded-2xl">
-          <div className="overflow-x-auto text-neutral-800">
-            <table className="table table-xs table-pin-rows table-pin-cols">
-              <thead className="bg-white">
-                <tr className="bg-white">
-                  <th className="bg-white">1</th>
-                  <td>Writer</td>
-                  <td>Writer email</td>
-                  <td>Content</td>
-                  <td>Message ID</td>
-                  <td>Sent At</td>
-                </tr>
-              </thead>
-              <tbody>
-                {allMessagesData.map((message: any, key: number) => (
-                  <tr key={key}>
-                    <th>{key + 1}</th>
-                    <td>{message.writer}</td>
-                    <td>{message.email}</td>
-                    <td>{message.content}</td>
-                    <td>{message.id}</td>
-                    <td>{message.sentAt}</td>
-                    <th className="text-neutral-200"></th>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <div className="flex flex-col gap-5 items-center justify-center w-fit mx-auto">
+          {allMessagesData.map((message: any, key: number) => (
+            <div
+              key={key}
+              className="p-4 w-full bg-white shadow-lg rounded-2xl"
+            >
+              <div className="overflow-x-auto text-neutral-800">
+                <table className="table table-xs table-pin-rows table-pin-cols w-full">
+                  <thead className="bg-white">
+                    <tr className="bg-white">
+                      <th className="bg-white">1</th>
+                      <td>Writer</td>
+                      <td>Writer email</td>
+                      <td>Message ID</td>
+                      <td>Sent At</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr key={key}>
+                      <th>{key + 1}</th>
+                      <td>{message.writer}</td>
+                      <td>{message.email}</td>
+                      <td>{message.id}</td>
+                      <td>{message.sentAt}</td>
+                      <th className="text-neutral-200"></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h1 className="text-sm text-neutral-600 mt-2">
+                Message content:
+              </h1>
+              <p className="text-neutral-800">{message.content}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

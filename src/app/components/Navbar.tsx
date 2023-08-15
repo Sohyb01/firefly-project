@@ -63,7 +63,7 @@ const Navbar = async () => {
       {/* Button */}
       {session == undefined && (
         <Link
-          href="/SigninPage"
+          href="/SignupPage"
           className="bg-green-600 rounded-xl py-2 px-8 text-green-50 hidden md:block"
         >
           Sign up

@@ -1,40 +1,16 @@
 "use client";
 
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-
 import { useFormik } from "formik";
 import { tripFormSchema } from "../validations/tripform";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState, useTransition } from "react";
 import { getSession } from "next-auth/react";
-
-interface tripFormData {
-  duration: number;
-  destination: string;
-  departureDate: string;
-  numberOfPeople: number;
-}
-
-interface submittedData {
-  duration: number;
-  destination: string;
-  departureDate: string;
-  numberOfPeople: number;
-  price: number;
-  userId: string;
-}
-
-// const addNewTrip = async (body: submittedData) => {
-//   const session = await getSession();
-//     const res = await fetch("/api/messages", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: body,
-//     });
-//     return res.json();
-// }
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import { tripFormData } from "../typings";
+import { addTripToDatabase } from "../actions/ServerActions";
 
 const BookTripForm = () => {
+  let [isPending, startTransition] = useTransition();
+
   const onSubmit = async (values: tripFormData, actions: any) => {
     const session = await getSession();
     if (!session) return null;
@@ -48,12 +24,7 @@ const BookTripForm = () => {
     };
     // console.log(fullValues)
     const data = JSON.stringify(fullValues);
-    console.log(data);
-    await fetch(`/api/trips`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: data,
-    });
+    startTransition(() => addTripToDatabase(data));
     await new Promise((res) => setTimeout(res, 1000));
     // actions.resetForm();
   };
@@ -95,6 +66,7 @@ const BookTripForm = () => {
       <form
         className="flex flex-col gap-8 text-neutral-800 p-4 lg:justify-between"
         onSubmit={handleSubmit}
+        // action={addTripToDatabase}
       >
         {/* Inputs area */}
         <div className="flex flex-col gap-4">
@@ -151,6 +123,9 @@ const BookTripForm = () => {
                 onBlur={handleBlur}
                 value={values.departureDate}
               ></input>
+              {errors.departureDate && (
+                <p className="text-red-500">{errors.departureDate}</p>
+              )}
             </div>
             <div className="flex flex-col min-w-[134px] w-full">
               <p>No. of People</p>

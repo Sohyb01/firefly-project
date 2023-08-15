@@ -1,7 +1,10 @@
 "use client";
 
 import { useFormik } from "formik";
+import { getSession } from "next-auth/react";
 import { contactFormSchema } from "../validations/contactform";
+import { addMessageToDatabase } from "../actions/ServerActions";
+import { startTransition, useTransition } from "react";
 
 interface messageFormData {
   name: string;
@@ -10,19 +13,23 @@ interface messageFormData {
 }
 
 const Footer = () => {
+  let [isPending, startTransition] = useTransition();
+  const getSessionFunction = async () => {
+    const session = await getSession();
+    return session?.user;
+  };
+  getSessionFunction;
+
   const onSubmit = async (values: messageFormData, actions: any) => {
     console.log(values);
+
     const data = {
       writer: values.name,
       content: values.message,
       email: values.email,
     };
     const body = JSON.stringify(data);
-    await fetch(`${process.env.HOST}/api/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: body,
-    });
+    startTransition(() => addMessageToDatabase(body));
     await new Promise((res) => setTimeout(res, 1000));
     // actions.resetForm();
   };
@@ -92,6 +99,7 @@ const Footer = () => {
                 autoComplete="off"
               >
                 {/* name and email */}
+
                 <div className="flex items-end gap-4 md:gap-8 w-full">
                   {/* name input */}
                   <div className="w-full">
@@ -106,6 +114,7 @@ const Footer = () => {
                       className="green-effect p-2 text-center bg-green-50 text-neutral-800 rounded-md w-full"
                       type="text"
                       id="name"
+                      name="name"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.name}
@@ -125,6 +134,7 @@ const Footer = () => {
                       className="green-effect p-2 text-center bg-green-50  text-neutral-800 rounded-md w-full"
                       type="email"
                       id="email"
+                      name="email"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.email}
@@ -137,6 +147,7 @@ const Footer = () => {
                   <textarea
                     className="p-2 text-start bg-green-50 text-neutral-800 rounded-md w-full green-effect resize-none"
                     id="message"
+                    name="message"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={values.message}
