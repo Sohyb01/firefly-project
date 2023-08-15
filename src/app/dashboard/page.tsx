@@ -4,27 +4,6 @@ import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 
-async function getAllUsers() {
-  const res = await fetch(`http://localhost:3000/api/users`, {
-    cache: "no-cache",
-  });
-  return res.json();
-}
-
-async function getAllTrips() {
-  const res = await fetch(`http://localhost:3000/api/trips`, {
-    cache: "no-cache",
-  });
-  return res.json();
-}
-
-async function getAllMessages() {
-  const res = await fetch(`http://localhost:3000/api/messages`, {
-    cache: "no-cache",
-  });
-  return res.json();
-}
-
 const Dashboard = async () => {
   const session = await getServerSession(options);
   if (!session || session.user.role != "ADMIN") {
@@ -32,16 +11,13 @@ const Dashboard = async () => {
   }
 
   // Get all the user data
-  const usersData = await getAllUsers();
-  const allUsersData = usersData.allUsers; //This is what will be rendered on the page
+  const usersData = await prisma.user.findMany({});
 
   // Get all the trips data
-  const tripsData = await getAllTrips();
-  const allTripsData = tripsData.allTrips; //This is what will be rendered on the page
+  const tripsData = await prisma.trip.findMany({});
 
-  // Get all the trips data
-  const messagesData = await getAllMessages();
-  const allMessagesData = messagesData.allMessages; //This is what will be rendered on the page
+  // Get all the messages data
+  const messagesData = await prisma.message.findMany({});
 
   return (
     <div className="section__styles flex flex-col gap-16 bg-neutral-200">
@@ -67,7 +43,7 @@ const Dashboard = async () => {
                 </tr>
               </thead>
               <tbody>
-                {allUsersData.map((user: any, key: number) => (
+                {usersData.map((user: any, key: number) => (
                   <tr key={key}>
                     <th>{key + 1}</th>
                     <td>{user.firstName}</td>
@@ -76,7 +52,7 @@ const Dashboard = async () => {
                     <td>{user.id}</td>
                     <td>{user.role}</td>
                     <td>${user.balance}</td>
-                    <td>{user.joinedAt}</td>
+                    <td>{user.joinedAt.toString()}</td>
                     <th className="text-neutral-200"></th>
                   </tr>
                 ))}
@@ -105,7 +81,7 @@ const Dashboard = async () => {
                 </tr>
               </thead>
               <tbody>
-                {allTripsData.map((trip: any, key: number) => (
+                {tripsData.map((trip: any, key: number) => (
                   <tr key={key}>
                     <th>{key + 1}</th>
                     <td>{trip.departureDate}</td>
@@ -115,7 +91,7 @@ const Dashboard = async () => {
                     <td>${trip.price}</td>
                     <td>{trip.id}</td>
                     <td>{trip.userId}</td>
-                    <td>{trip.bookedAt}</td>
+                    <td>{trip.bookedAt.toString()}</td>
                     <th className="text-neutral-200"></th>
                   </tr>
                 ))}
@@ -128,7 +104,7 @@ const Dashboard = async () => {
       <div className="">
         <h1 className="text-neutral-800 text-2xl">Messages</h1>
         <div className="flex flex-col gap-5 items-center justify-center w-fit mx-auto">
-          {allMessagesData.map((message: any, key: number) => (
+          {messagesData.map((message: any, key: number) => (
             <div
               key={key}
               className="p-4 w-full bg-white shadow-lg rounded-2xl"
@@ -150,7 +126,7 @@ const Dashboard = async () => {
                       <td>{message.writer}</td>
                       <td>{message.email}</td>
                       <td>{message.id}</td>
-                      <td>{message.sentAt}</td>
+                      <td>{message.sentAt.toString()}</td>
                       <th className="text-neutral-200"></th>
                     </tr>
                   </tbody>
